@@ -9,8 +9,10 @@ class POS_System {
 	
 
 	string product; 
-	float price; 
+	float price;
 public : 
+	string firstname, lastname, email;
+	long int contact;
 	void create_Product() {
 
 		cout << "Product name:"<<endl; 
@@ -19,16 +21,44 @@ public :
 		cout << product << "'s price:" << endl; 
 		cin >> price; 
 
-		ofstream Productlist;
-		
-		Productlist.open("Productrecords.txt"); 
-		Productlist << "Product name: " << product << endl; 
-		Productlist << product << "'s price: " << price << endl;
+		ofstream myfile;
+		myfile.open("ProductList.txt",fstream::app);
 
-		Productlist.close();
+		myfile << "Product Name: " << product << endl;
+		myfile << "Product Price: " << price << endl;
+		myfile << endl;
 
+		myfile.close();
 	}
+};
 
+class customerRecords :public POS_System
+{
+	void customerDetails()
+	{
+		ofstream customerdetails;
+		customerdetails.open("CustomerRecords.txt", fstream::app);
+
+		cout << "First Name: " << endl;
+		cin >> firstname;
+
+		cout << "Last Name: " << endl;
+		cin >> lastname;
+
+		cout << "Email Id: " << endl;
+		cin >> email;
+
+		cout << "Phone Number: " << endl;
+		cin >> contact;
+
+		customerdetails << "First Name: " << firstname << endl;
+		customerdetails << "Last Name: " << lastname << endl;
+		customerdetails << "Email Id: " << email << endl;
+		customerdetails << "Phone Number: " << contact << endl;
+		customerdetails << endl;
+
+		customerdetails.close();
+	}
 };
 int main()
 {
