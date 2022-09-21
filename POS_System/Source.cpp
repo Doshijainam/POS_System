@@ -1,8 +1,13 @@
 // POS System 
 
+
 #include<iostream>
+
 #include<fstream>
 #define DISCOUNT 10 
+#include <ctime>
+
+
 
 using namespace std;
 class POS_System {
@@ -34,6 +39,8 @@ public :
 
 class customerRecords :public POS_System
 {
+public : 
+
 	void customerDetails()
 	{
 		ofstream customerdetails;
@@ -59,6 +66,81 @@ class customerRecords :public POS_System
 
 		customerdetails.close();
 	}
+
+	
+};
+// jignesh patel 
+
+
+class Employee: public POS_System {
+public : 
+
+	
+	string sinNumber; 
+
+	void create_Product() {
+
+		cout << "Employee's first Name :" << endl;
+		cin >>firstname ;
+		cout << "Employee's last Name : "<<endl; 
+
+		cin >> lastname; 
+		
+
+
+		cout << "Employee's Sin number " <<   endl;
+		cin >>sinNumber;
+	     
+		ofstream EmployeeRecord;
+		EmployeeRecord.open("ProductList.txt", fstream::app);
+
+		EmployeeRecord << "Employee's  first Name: " << firstname << endl;
+		EmployeeRecord << "Employee's  last Name " << lastname << endl;
+		EmployeeRecord<< "Employee's sinNumber : " << sinNumber << endl;
+		// myfile << "Product Price: " << lastname << endl;
+		
+
+		EmployeeRecord.close(); 
+
+	}
+
+
+	
+
+
+};
+class TimeShark : public Employee ,POS_System{
+	double clock_in; 
+	double clock_out; 
+public: 
+	void clock_in() {
+		time_t now = time(0);
+		char* date = ctime(&now);
+		
+		cout << "You have clocked in for shift on " <<date << "at" << now << endl;
+		clock_in = now; 
+
+
+	}
+
+	void clock_out() {
+		time_t now = time(0);
+		char* date = ctime(&now);
+
+		cout << "You have clocked out for shift on " << date << "at" << now << endl;
+		clock_out = now;
+
+
+	}
+
+	
+		// calculate the time for which employee has worked 
+		// what is the pay of that employee 
+		/* this can be calculated by making some sort of list where specific groups of people will get specific pay
+		 according to the pay contract */
+
+
+     
 };
 int main()
 {
